@@ -90,8 +90,8 @@ inline void                     OpenSpaceToolkitMathematicsPy_Geometry_3D_Object
         // Casting issue with both boost and pybind11 (likely related to pointers' handling)
         // .def("access_object_at", &Composite::accessObjectAt, return_value_policy<reference_existing_object>())
         // .def("access_objects", &Composite::accessObjects, return_value_policy<reference_existing_object>())
-        // .def("access_object_at", &Composite::accessObjectAt, return_value_policy::reference)
-        // .def("access_objects", &Composite::accessObjects, return_value_policy::reference)
+        .def("access_object_at", &Composite::accessObjectAt, return_value_policy::reference)
+        // .def("access_objects", &Composite::accessObjects, return_value_policy::reference) // https://stackoverflow.com/questions/53807248/pybind11-returning-a-pointer-to-a-container-of-unique-ptr
         .def("get_object_count", &Composite::getObjectCount)
         .def("intersection_with_object", +[] (const Composite& aComposite, const Object& anObject) -> Intersection { return aComposite.intersectionWith(anObject) ; })
         .def("intersection_with_composite", +[] (const Composite& aComposite, const Composite& anotherComposite) -> Intersection { return aComposite.intersectionWith(anotherComposite) ; })
